@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+.vscode
+build
+playground.js
+init-tsc.sh
+

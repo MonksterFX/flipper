@@ -1,0 +1,18 @@
+
+@root = api/v1
+@host = localhost:3000/{{root}}
+
+### send healthcheck
+GET http://{{host}}/health
+content-type: application/json
+
+### create mail
+POST http://{{host}}/mail
+
+### get all mails sticking to session
+# @name mails
+GET http://{{host}}/mails
+
+### take the first mail
+@inbox = {{mails.response.body.$[0]}}
+GET http://{{host}}/mail/{{inbox}}
