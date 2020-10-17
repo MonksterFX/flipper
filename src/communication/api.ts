@@ -9,9 +9,10 @@ const router = express.Router();
 const storage = Storage.getInstance();
 const cors = require('cors');
 
-const allowedOrgins = process.env.FLIPPER_ALLOWED_ORIGIN?.split(' ').map((v)=>v.trim()) || ['http://localhost:8080', 'https://localhost:8080'] 
-
-console.log(`SET allowedOrigins: ${allowedOrgins.join(',')}`)
+const allowedOrgins = process.env.FLIPPER_CORS_ALLOWED_ORIGIN?.split(' ').map((v)=>v.trim()) || ['http://localhost:8080', 'https://localhost:8080'] 
+const secureMode = process.env.FLIPPER_CORS_COOKIE_SECURE ? true : false;
+console.log(`CORS SET allowedOrigins: ${allowedOrgins.join(',')}`)
+console.log(`CORS SET secure: ${secureMode}`)
 
 app.use(
   cors({
@@ -40,7 +41,7 @@ app.use(
     name: 'sessionID',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 300000, httpOnly: true },
+    cookie: { secure: secureMode, maxAge: 300000, httpOnly: true, sameSite: secureMode ? 'none' : 'lax' },
   })
 );
 
