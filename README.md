@@ -17,7 +17,7 @@ A prototyp UI concept for flipper can be found here: [flipper-ui](https://github
 Build it with
 
 ```
-docker build --pull --rm -f "dockerfile" -t flipper:latest "."
+docker build --pull --rm -t flipper:latest .
 ```
 
 Run it with
