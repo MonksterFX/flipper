@@ -11,7 +11,7 @@ const storage = Storage.getInstance();
 const cors = require('cors');
 
 const allowedOrgins = process.env.FLIPPER_ALLOWED_ORIGIN?.split(' ') || ['http://localhost:8080', 'https://localhost:8080'] 
-console.log(`SET allowedOrigins: ${allowedOrgins.join(', ')}`)
+console.log(`SET allowedOrigins: ${allowedOrgins.join(' ')}`)
 
 app.use(
   cors({
