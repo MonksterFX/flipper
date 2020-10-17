@@ -10,15 +10,14 @@ const router = express.Router();
 const storage = Storage.getInstance();
 const cors = require('cors');
 
+const allowedOrgins = process.env.FLIPPER_ALLOWED_ORIGIN?.split(' ') || ['http://localhost:8080', 'https://localhost:8080'] 
+
 app.use(
   cors({
     // https://medium.com/zero-equals-false/using-cors-in-express-cac7e29b005b
     credentials: true,
     exposedHeaders: ['set-cookie'],
-    origin: function(origin:any, callback:any){
-    //   todo: allow localhost and domain given in eviroment file
-      return callback(null, true);
-    },
+    origin: allowedOrgins
   })
 );
 
@@ -31,7 +30,7 @@ app.use(
     name: 'sessionID',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 300000, sameSite: 'none', secure: true},
+    cookie: { maxAge: 300000 },
   })
 );
 
