@@ -12,7 +12,8 @@ const cors = require('cors');
 
 app.use(
   cors({
-    origin: ['http://localhost:8080', 'https://localhost:8080'],
+    // origin: ['http://localhost:8080', 'https://localhost:8080'],
+    // https://medium.com/zero-equals-false/using-cors-in-express-cac7e29b005b
     credentials: true,
     exposedHeaders: ['set-cookie'],
   })
@@ -23,8 +24,8 @@ app.use(morgan('short'));
 app.use(
   session({
     rolling: true,
-    secret: randomBytes(265 / 8).toString('hex'),
-    name: 'flipflipflop',
+    secret: randomBytes(265 / 8).toString('hex'), // mix after restart
+    name: 'sessionID',
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 300000 },

@@ -11,3 +11,17 @@ To add a virtual host on OSX add a line in your `/privat/etc/hosts` with **mail.
 ## flipper-ui
 
 A prototyp UI concept for flipper can be found here: [flipper-ui](https://github.com/MonksterFX/flipper-ui)
+
+## docker
+
+Build it with
+
+```
+docker build --pull --rm -f "dockerfile" -t flipper:latest "."
+```
+
+Run it with
+
+```
+docker run -p 25:25 -p 3000:3000 flipper
+```

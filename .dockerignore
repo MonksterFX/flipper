@@ -1,0 +1,5 @@
+/.vscode
+/.git
+/build
+/coverage
+/node_modules
