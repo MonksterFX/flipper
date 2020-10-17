@@ -51,7 +51,7 @@ router.get('/health', (req, res, next) => {
 
 router.post('/mail', withSession, (req, res, next) => {
   let prefix = ''; // not supported by now
-  let DOMAIN = 'mail.local';
+  let DOMAIN = process.env.FLIPPER_MAIL_DOMAIN || 'mail.local';
 
   // create mail
   let id = randomBytes(5).toString('hex');
