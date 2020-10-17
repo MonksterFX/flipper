@@ -12,10 +12,13 @@ const cors = require('cors');
 
 app.use(
   cors({
-    // origin: ['http://localhost:8080', 'https://localhost:8080'],
     // https://medium.com/zero-equals-false/using-cors-in-express-cac7e29b005b
     credentials: true,
     exposedHeaders: ['set-cookie'],
+    origin: function(origin:any, callback:any){
+    //   todo: allow localhost and domain given in eviroment file
+      return callback(null, true);
+    },
   })
 );
 

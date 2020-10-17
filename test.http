@@ -1,6 +1,7 @@
 
 @root = api/v1
 @host = localhost:3000/{{root}}
+@host = flipper.mrmonk.dev/{{root}}
 
 ### send healthcheck
 GET http://{{host}}/health
