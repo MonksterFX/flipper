@@ -31,7 +31,7 @@ app.use(
     name: 'sessionID',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 300000, sameSite: 'none'},
+    cookie: { maxAge: 300000, sameSite: 'none', secure: true},
   })
 );
 
