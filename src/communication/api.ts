@@ -3,7 +3,6 @@ import express from 'express';
 import session from 'express-session';
 import { Storage } from '../shared/storage';
 import morgan from 'morgan';
-import { RSA_NO_PADDING } from 'constants';
 
 const app = express();
 const router = express.Router();
@@ -18,7 +17,16 @@ app.use(
     // https://medium.com/zero-equals-false/using-cors-in-express-cac7e29b005b
     credentials: true,
     exposedHeaders: ['set-cookie'],
-    origin: allowedOrgins
+    origin: function (origin:any, callback:any) {
+      if(!origin) return callback(null, true)
+
+      if (allowedOrgins.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        console.warn(`Origin:${origin} is not allowed to access resources`)
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
   })
 );
 
@@ -31,7 +39,7 @@ app.use(
     name: 'sessionID',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 300000 },
+    cookie: { maxAge: 300000, httpOnly: true },
   })
 );
 
