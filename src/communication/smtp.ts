@@ -15,6 +15,7 @@ const server = new SMTPServer({
     simpleParser(stream).then((parsed: any) => {
       let mail = new Mail(parsed);
       storage.store(mail);
+      console.log(`received mail for ${mail.to} from ${mail.from} with size ${mail.htmlBody.length}/${mail.body.length} (html/txt)`)
     });
     stream.on('end', callback);
     // stream.pipe(parser); // Print the message to stdout
