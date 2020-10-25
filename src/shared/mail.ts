@@ -21,11 +21,18 @@ export class Mail implements IMail {
     this.to = rawMail.to.text;
     this.from = rawMail.from.text;
     this.body = rawMail.text;
-    try {
-      this.htmlBody = sanitizeHtml(rawMail.html);
-    } catch (error) {
-      this.htmlBody = rawMail.text;
+
+    // is false
+    if(rawMail.html){
+      try {
+        this.htmlBody = sanitizeHtml(rawMail.html);
+      } catch (error) {
+        this.htmlBody = rawMail.text;
+      }
+    }else{
+      this.htmlBody = ""
     }
+
     this.subject = rawMail.subject;
     this.recived = rawMail.date;
   }
